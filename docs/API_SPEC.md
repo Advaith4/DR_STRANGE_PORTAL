@@ -82,11 +82,17 @@ No methods — pure data carrier. Never add logic here (`CODING_STANDARDS.md` §
 
 ```python
 class Camera:
-    def __init__(self, device_index: int = 0, target_width: int = 960, target_height: int = 540): ...
+    def __init__(
+        self,
+        device_index: int = 0,
+        target_width: int = 960,
+        target_height: int = 540,
+        mirror_feed: bool = True,
+    ): ...
 
     def read(self) -> np.ndarray:
         """Return the next BGR frame, resized to (target_width, target_height),
-        horizontally mirrored. Raises CameraError if capture fails."""
+        and optionally horizontally mirrored. Raises CameraError if capture fails."""
 
     def get_fps(self) -> float:
         """Return a rolling-average FPS computed from internal timestamps,
@@ -110,7 +116,12 @@ class HandResult:
     track_point: tuple[float, float] | None      # whichever point is configured as primary
 
 class HandTracker:
-    def __init__(self, max_num_hands: int = 1, track_point: str = "wrist"): ...
+    def __init__(
+        self,
+        max_num_hands: int = 1,
+        track_point: str = "wrist",
+        smoothing_alpha: float = 0.5,
+    ): ...
 
     def process(self, frame: np.ndarray) -> HandResult:
         """Run MediaPipe Hands on the frame, apply EMA smoothing to the
@@ -276,12 +287,17 @@ class PortalAnimator:
 ## `ui/hud.py`
 
 ```python
-class Hud:
-    def __init__(self, enabled: bool = True): ...
+class HUD:
+    def __init__(self, font_scale: float = 0.5, thickness: int = 1): ...
 
-    def render(self, frame: np.ndarray, state: str, fps: float,
-                debug_info: dict) -> np.ndarray:
-        """Draw state name, FPS, and any debug overlays onto frame."""
+    def draw(
+        self,
+        frame: np.ndarray,
+        state: str,
+        fps: float,
+        track_point: tuple[float, float] | None,
+    ) -> None:
+        """Draw state name, FPS, and tracked-point coordinates onto frame."""
 ```
 
 ## `ui/fps_counter.py`
@@ -289,8 +305,12 @@ class Hud:
 ```python
 class FpsCounter:
     def __init__(self, window_size: int = 30): ...
-    def tick(self) -> float:
-        """Call once per frame; returns rolling-average FPS."""
+
+    def update(self) -> None:
+        """Record one frame timestamp."""
+
+    def get_fps(self) -> float:
+        """Return rolling-average FPS."""
 ```
 
 ---

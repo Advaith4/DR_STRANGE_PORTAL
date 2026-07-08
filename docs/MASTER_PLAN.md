@@ -13,21 +13,21 @@ Requirements (SDD §2–3)
    ↓
 Architecture (SDD §4–7, API_SPEC.md)
    ↓
-Sprint 00 — Repo scaffold, config, no CV yet
+Sprint 00 — Repo scaffold, config, no CV yet        → COMPLETE
    ↓
-Sprint 01 — Camera + Hand Tracking          → Prototype v0.1
+Sprint 01 — Camera + Hand Tracking                  → Prototype v0.1 COMPLETE
    ↓
-Sprint 02 — Gesture Detection                → Prototype v0.2
+Sprint 02 — Gesture Detection                       → Prototype v0.2 CURRENT
    ↓
-Sprint 03 — Portal Rendering                 → Prototype v0.3
+Sprint 03 — Portal Rendering                        → Prototype v0.3
    ↓
-Sprint 04 — Portal Animation                 → Prototype v0.4
+Sprint 04 — Portal Animation                        → Prototype v0.4
    ↓
-Sprint 05 — Body Detection                   → Prototype v0.5
+Sprint 05 — Body Detection                          → Prototype v0.5
    ↓
-Sprint 06 — Disappearance Effect             → Prototype v0.6
+Sprint 06 — Disappearance Effect                    → Prototype v0.6
    ↓
-Sprint 07 — Integration + Polish             → Release v1.0
+Sprint 07 — Integration + Polish                    → Release v1.0
 ```
 
 Each arrow is a **gate**: don't start the next sprint until the current prototype's acceptance criteria (defined in that sprint's file) are met and manually verified against a live webcam.
@@ -36,14 +36,28 @@ Each arrow is a **gate**: don't start the next sprint until the current prototyp
 
 | Field | Value |
 |---|---|
-| Current Sprint | Sprint 00 (not yet started) |
-| Current Prototype | none |
-| Blocking Issues | none |
-| Last Updated | 2026-07-07 |
+| Current Sprint | Sprint 02 |
+| Current Prototype | v0.1.0 complete; Prototype v0.2 not started |
+| Current Status | Sprint 01 complete and released; ready to begin gesture detection |
+| Blocking Issues | None |
+| Last Updated | 2026-07-08 |
 
 *(Update this table at the end of every sprint — it's the fastest way for a new Codex session to reorient.)*
 
-## 3. Document Map
+## 3. Progress Table
+
+| Sprint | Prototype | Focus | Status |
+|---|---|---|---|
+| Sprint 00 | v0.0.0 | Repository scaffold, config, logging, bootstrap | COMPLETE |
+| Sprint 01 | v0.1.0 | Camera capture and MediaPipe hand tracking debug overlay | COMPLETE |
+| Sprint 02 | v0.2.0 | Circular gesture detection | CURRENT |
+| Sprint 03 | v0.3.0 | Static portal rendering | NOT STARTED |
+| Sprint 04 | v0.4.0 | Portal animation | NOT STARTED |
+| Sprint 05 | v0.5.0 | Body detection | NOT STARTED |
+| Sprint 06 | v0.6.0 | Disappearance effect | NOT STARTED |
+| Sprint 07 | v1.0.0 | Integration and polish | NOT STARTED |
+
+## 4. Document Map
 
 | Document | Role |
 |---|---|
@@ -60,15 +74,15 @@ Each arrow is a **gate**: don't start the next sprint until the current prototyp
 
 Project structure was right-sized in ADR-006 (see `ARCHITECTURE_DECISIONS.md`): `config/` is now a top-level split (`config.yaml` for tunables, `logging.yaml` for logging setup), and `tests/` splits into `unit/`, `integration/`, and `data/` (fixtures). Full rationale and the complete tree are in `SDD.md` §6.
 
-## 4. Working Agreement for AI-Assisted Sessions
+## 5. Working Agreement for AI-Assisted Sessions
 
 1. Always start a session by reading `MASTER_PLAN.md` → the current sprint file → `API_SPEC.md` for any module being touched.
 2. A sprint is not "done" until its Acceptance Criteria are checked off **and** the Current Status table above is updated.
 3. Architecture changes (folder structure, module boundaries) require a corresponding edit to `SDD.md`, `API_SPEC.md`, **and** a new entry in `ARCHITECTURE_DECISIONS.md` in the *same* change — never let code and docs drift, and never let a non-obvious decision go unrecorded.
 4. See `CODEX_GUIDELINES.md` for the full rules of engagement.
 
-## 5. Versioning
+## 6. Versioning
 
-- `v0.1` – `v0.6`: internal prototypes, one per sprint, not tagged in git beyond a commit message.
-- `v1.0`: first fully integrated, polished, demo-ready release — tagged in git, README finalized, demo video recorded.
-- Anything after `v1.0` (stretch goals from `SDD.md` §17) is `v1.x` and gets its own sprint file created on demand, following the same template as Sprints 00–07.
+- `v0.1.0` – `v0.6.0`: internal prototypes, one per sprint, tagged when the sprint is manually verified and released.
+- `v1.0.0`: first fully integrated, polished, demo-ready release — tagged in git, README finalized, demo video recorded.
+- Anything after `v1.0.0` (stretch goals from `SDD.md` §17) is `v1.x` and gets its own sprint file created on demand, following the same template as Sprints 00–07.
