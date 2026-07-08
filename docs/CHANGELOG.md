@@ -18,10 +18,17 @@ All notable changes to this project are documented here, one entry per sprint. F
 ## Template for Each Sprint's Entry
 
 ```
-## [v0.N] — Sprint 0N — YYYY-MM-DD
+## v0.0.0 (Sprint 0.0)
 
 ### Added
-- ...
+- 
+- Project scaffold
+- Configuration management
+- Centralized logging
+- Application bootstrap
+- Unit tests for configuration
+- Unit tests for logging
+- Development tooling (Black, Ruff, Pytest)
 
 ### Changed
 - ...
